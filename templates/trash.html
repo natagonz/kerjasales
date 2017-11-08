@@ -1,0 +1,64 @@
+@app.route("/dashboard/pasang-iklan",methods=["GET","POST"])
+@login_required
+def PublishJob():
+	form = JobForm()
+	if form.validate_on_submit():
+		job = Publish(title=form.title.data,description=form.description.data,email=form.email.data,phone=form.phone.data,address=form.address.data,salary=form.salary.data,website=form.website.data)
+		db.session.add(job)
+		db.session.commit()
+
+		flash("iklan sudah tayang","success")
+		return redirect(url_for("AdminDashboard"))
+	return render_template("admin/publish.html",form=form)
+
+
+@app.route("/dashboard/edit-iklan/<string:id>",methods=["GET","POST"])
+@login_required
+def EditJob(id):
+	form = JobForm()
+	job = Publish.query.filter_by(id=id).first()
+	form.title.data = job.title
+	form.description.data = job.description
+	form.email.data = job.email
+	form.phone.data = job.phone
+	form.address.data = job.address
+	form.salary.data = job.salary
+	form.website.data =  job.website
+	if form.validate_on_submit():
+		publish = Publish.query.filter_by(id=id).first()
+		publish.title = request.form["title"]
+		publish.description = request.form["description"]
+		publish.email = request.form["email"]
+		publish.phone = request.form["phone"]
+		publish.address = request.form["address"]
+		publish.salary = request.form["salary"]
+		publish.website = request.form["website"]
+		db.session.commit()
+
+		flash("iklan berhasil di edit","success")
+		return redirect(url_for("AdminDashboard"))
+
+	return render_template("admin/edit.html",form=form)
+
+
+
+@app.route("/dashboard/delete/<string:id>",methods=["GET","POST"])
+@login_required
+def DeleteJob(id):
+	job = Publish.query.filter_by(id=id).first()
+	db.session.delete(job)
+	db.session.commit()
+
+	flash("Iklan di hapus","success")
+	return redirect(url_for("AdminDashboard"))
+
+
+
+
+
+
+
+
+
+
+

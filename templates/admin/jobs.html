@@ -1,0 +1,76 @@
+{% extends "layouts/adminlayout.html" %}
+
+{% block title %} All Jobs {% endblock%}
+
+
+{% block content %}
+
+<link href="{{url_for ('static',filename='css/index.css')}}" rel="stylesheet" />
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+
+ <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+     
+
+        <!-- Post Content Column -->
+        <div class="col-lg-10">
+
+          <!-- Title -->
+          <h1 class="mt-4">{{ job.title }}</h1>
+          <p class="lead">
+            by
+            <a href="">{{ job.company }}</a>
+          </p>
+        
+                <i class="fa fa-map-marker pr-1"> {{job.address}} </i> 
+                <i class="fa fa-money pr-1"> {{ job.salary }} </i>
+                <i class="fa fa-suitcase"> {{ job.position }} </i>
+                <i class="fa fa-envelope"> {{ job.email }} </i>
+                <i class="fa fa-phone"> {{ job.phone }} </i>
+           
+         
+          <hr>
+
+          <!-- Post Content -->
+
+          <p id="title2">{{ job.description | safe }} </p>
+
+          </br>
+         
+          
+
+
+
+
+          <hr>
+    
+          <i class="">
+         
+         
+
+        </div>
+
+        
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

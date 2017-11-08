@@ -1,0 +1,79 @@
+{% extends "layouts/layout.html" %}
+
+{% block content %}
+<link href="{{url_for ('static',filename='css/index.css')}}" rel="stylesheet" />
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+</br>
+</br>
+<a href="/"><i class="fa fa-arrow-left" aria-hidden="true"> Homepage </i></a>
+</br>
+</br>
+
+
+
+ <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+     
+
+        <!-- Post Content Column -->
+        <div class="col-lg-12">
+
+          <!-- Title -->
+          <h1 class="mt-4">{{ job.title }}</h1>
+          <p class="lead">
+           <i class="fa fa-building pr-1"> {{ job.company }} </i>  
+          </p>
+           <div>
+                <i class="fa fa-map-marker pr-1"> {{job.address}} </i> 
+                <i class="fa fa-money pr-1"> {{ job.salary }} </i>
+                <i class="fa fa-suitcase"> {{ job.position }} </i>
+            </div>
+         
+          <hr>
+
+          <!-- Post Content -->
+
+          <p id="title2">{{ job.description | safe }} </p>
+
+          </br>
+         
+          
+
+
+
+
+          <hr>
+		
+			<a class="btn btn-bold btn-info" href="mailto:{{job.email}}">Apply To : {{ job.email }}</a>
+         
+          </div>
+
+        </div>
+
+        
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+</br>
+
+</br>
+</br>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

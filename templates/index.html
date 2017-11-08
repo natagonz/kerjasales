@@ -1,0 +1,56 @@
+{% extends "layouts/layout.html" %}
+
+{% block content %}
+
+<link href="{{url_for ('static',filename='css/index.css')}}" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<br>
+<br>
+<br>
+<div class="col-md-12">
+    <div class="text-center">
+      <h1 id="title1">KERJA SALES</h1>
+      <h3 id="title2"  > KerjaSales.com adalah tempat terbaik untuk mencari kandidat sales & marketing berkualitas. Tertarik untuk pasang iklan ?</h3>
+     <h3 class="btn btn-danger center" id="title2"><a href="/pasang-iklan" class="banner" > Pasang Disini </a></h3>
+    </div>
+<hr>
+</br>
+</br>
+{% for job in jobs %}
+    <div class="card b-1 hover-shadow mb-20">
+        <div class="media card-body">
+            <div class="media-left pr-12">
+                <a href="/{{ job.id }}"><img class="avatar avatar-xl no-radius" src="http://127.0.0.1:5000/static/img/profile/{{ job.image_name}}" alt="..."></a>
+            </div>
+            <div class="media-body">
+                <div class="mb-2">
+                    <span class="fs-20 pr-16"><a href="/{{ job.id }}">{{ job.title }}</a></span>
+                </div>
+                <small class="fs-16 fw-300 ls-1">{{ job.company}}</small>
+            </div>
+            
+        </div>
+        <footer class="card-footer flexbox align-items-center">
+            <div>
+                <i class="fa fa-map-marker pr-1"> {{job.address}}</i> 
+                <i class="fa fa-money pr-1"> {{ job.salary }}</i>
+            </div>
+            <div class="card-hover-show">
+                <a class="btn btn-xs fs-10 btn-bold btn-info" href="#">Apply</a>
+               
+            </div>
+        </footer>
+    </div>
+{% endfor %}
+
+    
+
+ 
+
+    
+    <br>
+</div>
+
+
+
+{% endblock %}

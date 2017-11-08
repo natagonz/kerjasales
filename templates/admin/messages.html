@@ -1,0 +1,56 @@
+{% extends "layouts/adminlayout.html" %}
+
+{% block title %} All Jobs {% endblock%}
+
+
+{% block content %}
+
+<table class="table table-striped"> 
+    <tr>
+        <th>name</th>
+        <th>subject</th>
+        <th></th>
+        <th></th>
+    </tr>
+
+
+    {% for pesan in messages  %}
+            <tr>
+                <th>{{ pesan.name }}</th>
+                <th>{{ pesan.subject }}</th>
+                <th><a href="message/{{ pesan.id }}" class="btn btn-success">Lihat</a></th>
+                <th><button type="button" class="btn btn-danger" onclick="myFunction()">Delete</button></th>
+                </tr>
+
+                <script>
+                function myFunction() {
+                     var x = window.confirm("Are You Sure ?");
+                        if(x){
+                               window.location = '/dashboard/delete-message/{{ pesan.id}}' ;
+                                }
+                         else {
+                               return false;
+                              }
+                        }    
+                </script>
+
+
+
+    {% endfor %}
+
+
+
+
+
+</table>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
