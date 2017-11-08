@@ -11,6 +11,7 @@ from flask_uploads import UploadSet, IMAGES, configure_uploads
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "Cariuangitugampang"
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:root@localhost/kerjasales"
+app.debug = True
 db = SQLAlchemy(app)
 
 #fungsi mail
