@@ -11,7 +11,7 @@ from flask_uploads import UploadSet, IMAGES, configure_uploads
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "Cariuangitugampang"
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:root@localhost/kerjasales"
-app.debug = True
+
 db = SQLAlchemy(app)
 
 #fungsi mail
@@ -113,7 +113,7 @@ def PostJob():
 	form = JobForm()
 	if form.validate_on_submit():
 		email = form.email.data
-		msg = Message("Invoice Iklan", sender="makinrame@gmail.com", recipients=[email])
+		msg = Message("Invoice Iklan", sender="kerjasales.com@gmail.com", recipients=[email])
 		link = url_for("JobInvoice",_external=True)
 		link2 = url_for("ContactMe",_external=True)
 		msg.body = "Iklan anda akan segera tayang. Silakan lakukan pembayaran dengan mengikuti invoice di link berikut {} dan anda dapat konfirmasikan pembayaran anda di link berikut {}".format(link,link2)
