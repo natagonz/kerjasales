@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, session, flash, redirect, request
+from flask import Flask, render_template, url_for, session, flash, redirect, request, send_file
 from flask_sqlalchemy import SQLAlchemy 
 from form import JobForm, AdminRegistrationForm, AdminLoginForm, EditStatus, ContactForm
 from flask_mail import Mail, Message
@@ -131,7 +131,11 @@ def PostJob():
 
 @app.route("/invoice",methods=["GET","POST"])
 def JobInvoice():
-	return render_template("invoice.html")
+	try :
+		return send_file("/kerjasales/kerjasales/static/invoice_kerjasales.pdf",attachment_filename="invoice_kerjasales.pdf")
+	except Exception as e:
+		return str(e)
+
 
 
 @app.route("/kontak",methods=["GET","POST"])
@@ -144,6 +148,10 @@ def ContactMe():
 		flash("Pesan anda terkirim","success")
 		return redirect(url_for("index"))
 	return render_template("contact.html",form=form)
+
+
+
+
 
 
 
