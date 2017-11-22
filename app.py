@@ -15,10 +15,10 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:root@localhost/kerjasales"
 db = SQLAlchemy(app)
 
 #fungsi mail
-app.config.from_pyfile("config.cfg") 
+'''app.config.from_pyfile("config.cfg") 
 mail = Mail(app)
 s = URLSafeTimedSerializer("secret")
-
+'''
 #flask login
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -112,12 +112,12 @@ def IndexJobs(id):
 def PostJob():
 	form = JobForm()
 	if form.validate_on_submit():
-		email = form.email.data
+		'''email = form.email.data
 		msg = Message("Invoice Iklan", sender="kerjasales.com@gmail.com", recipients=[email])
 		link = url_for("JobInvoice",_external=True)
 		link2 = url_for("ContactMe",_external=True)
 		msg.body = "Iklan anda akan segera tayang. Silakan lakukan pembayaran dengan mengikuti invoice di link berikut {} dan anda dapat konfirmasikan pembayaran anda di link berikut {}".format(link,link2)
-		mail.send(msg)
+		mail.send(msg)'''
 
 		filename = images.save(form.images.data)
 		job = Job(title=form.title.data,description=form.description.data,position=form.position.data,email=form.email.data,phone=form.phone.data,address=form.address.data,salary=form.salary.data,company=form.company.data,image_name=filename,status="pending")
@@ -132,7 +132,7 @@ def PostJob():
 @app.route("/invoice",methods=["GET","POST"])
 def JobInvoice():
 	try :
-		return send_file("/kerjasales/kerjasales/static/invoice_kerjasales.pdf",attachment_filename="invoice_kerjasales.pdf")
+		return send_file("/kerjasales/static/invoice_kerjasales.pdf",attachment_filename="invoice_kerjasales.pdf")
 	except Exception as e:
 		return str(e)
 
@@ -333,4 +333,5 @@ def DeleteMessage(id):
 
 
 if __name__ == "__main__":
-	app.run(host='0.0.0.0')
+	app.run()
+	#app.run(host='0.0.0.0')
